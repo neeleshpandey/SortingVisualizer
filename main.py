@@ -10,7 +10,9 @@ def bubbleSort(arr):    #Bubble Sort Technique
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-                draw.dispSort(arr,j,j+1)               
+                draw.dispSort(arr = arr,
+                              l = j,
+                              m = j+1)               
     draw.drawArr(arr,GREEN,1)
 
 def insertionSort(arr): #Insertion Sort Technique
@@ -19,10 +21,14 @@ def insertionSort(arr): #Insertion Sort Technique
         j = i-1
         while j >= 0 and temp < arr[j] :
                 arr[j + 1] = arr[j]
-                draw.dispSort(arr,j+1,j)
+                draw.dispSort(arr = arr,
+                              l = j+1,
+                              m = j)
                 j -= 1
         arr[j + 1] = temp
-        draw.dispSort(arr,j+1,j)
+        draw.dispSort(arr = arr,
+                      l = j+1,
+                      m = j)
     draw.drawArr(arr,GREEN,1)
 
 def selectionSort(arr): #Selection Sort Technique
@@ -31,9 +37,13 @@ def selectionSort(arr): #Selection Sort Technique
         for j in range(i+1, len(arr)):
             if arr[min_idx] > arr[j]:
                 min_idx = j
-                draw.dispSort(arr,j)
+            draw.dispSort(arr = arr,
+                          l = j,
+                          fstDispIndex = min_idx)
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
-        draw.dispSort(arr,min_idx,i)
+        draw.dispSort(arr = arr,
+                      l = min_idx,
+                      m = i)
     draw.drawArr(arr,GREEN,1)
 
 def closeWindow():  #This function helps to quit the while loop when Tkinter screen is closed

@@ -74,11 +74,20 @@ class ScreenVisual():
         pygame.display.update() 
         pygame.time.delay(delay)
 
-    def dispSort(self,arr,l,m=-1):
+    def fastDisp(self,arr,i):
+        k = self.COLS-1
+        while k != self.ROWS - arr[i]:
+                if k != self.ROWS - arr[i]:
+                        self.grid[i][k] = YELLOW
+                        k -= 1
+
+    def dispSort(self,arr,l,m=-1,fstDispIndex=-1):
         """This function displays realtime changes in array on pygame screen"""
         k1 = k2 = self.COLS-1
         self.empGrids()
         self.drawArr(arr,PURPLE)
+        if fstDispIndex != -1:
+            self.fastDisp(arr,fstDispIndex)
         pygame.display.update()
         if m!=-1:
             while k1 != self.ROWS - arr[l] or k2 != self.ROWS - arr[m]:
