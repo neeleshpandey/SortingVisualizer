@@ -46,6 +46,38 @@ def selectionSort(arr): #Selection Sort Technique
                       m = i)
     draw.drawArr(arr,GREEN,1)
 
+def quickSort(arr): #Quick Sort Technique
+    def partition(start, end, arr):
+        pivot_index = start
+        pivot = arr[pivot_index]
+        while start < end:
+            while start < len(arr) and arr[start] <= pivot:
+                draw.dispSort(arr = arr,
+                              l = start)
+                start += 1
+            while arr[end] > pivot:
+                draw.dispSort(arr = arr,
+                              l = end)
+                end -= 1
+            if(start < end):
+                draw.dispSort(arr = arr,
+                              l = start,
+                              m = end)
+                arr[start], arr[end] = arr[end], arr[start]
+        arr[end], arr[pivot_index] = arr[pivot_index], arr[end]
+        draw.dispSort(arr = arr,
+                      l = end,
+                      m = pivot_index)
+        return end
+
+    def quick_Sort(start, end, arr):
+        if (start < end):
+            pivot_index = partition(start, end, arr)
+            quick_Sort(start, pivot_index - 1, arr)
+            quick_Sort(pivot_index + 1, end, arr)
+    quick_Sort(0,len(arr)-1,arr)
+    draw.drawArr(arr,GREEN,1)
+
 def closeWindow():  #This function helps to quit the while loop when Tkinter screen is closed
     global f 
     f = 1
@@ -70,10 +102,10 @@ while run:
 
     Label(text="Sorting Technique").grid(row=1, column=0)
     sortType = StringVar(value="Bubble Sort")
-    OptionMenu(root, sortType, "Bubble Sort", "Insertion Sort","Selection Sort").grid(row=1, column=1)
+    OptionMenu(root, sortType, "Bubble Sort", "Insertion Sort","Selection Sort","Quick Sort").grid(row=1, column=1)
 
     Label(text="Speed").grid(row=2, column=0)
-    speed = IntVar(value=20)
+    speed = IntVar(value=10)
     Entry(root, textvariable = speed).grid(row=2,column=1)
 
     gridLines = BooleanVar(value=True)
@@ -112,4 +144,6 @@ while run:
             insertionSort(arr)
         elif sortMethod == "Selection Sort":
             selectionSort(arr)
+        elif sortMethod == "Quick Sort":
+            quickSort(arr)
         break
