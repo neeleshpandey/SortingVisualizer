@@ -78,6 +78,45 @@ def quickSort(arr): #Quick Sort Technique
     quick_Sort(0,len(arr)-1,arr)
     draw.drawArr(arr,GREEN,1)
 
+def mergeSort(arr):
+    if len(arr) > 1:
+        mid = len(arr)//2
+        L = arr[:mid]
+        R = arr[mid:]
+        mergeSort(L)
+        mergeSort(R)
+        i = j = k = 0
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                draw.dispSort(arr = arr,
+                              l = k,
+                              m = i)
+                arr[k] = L[i]
+                i += 1
+            else:
+                draw.dispSort(arr = arr,
+                              l = k,
+                              m = j)
+                arr[k] = R[j]
+                j += 1
+            k += 1
+        while i < len(L):
+            draw.dispSort(arr = arr,
+                          l = k,
+                          m = i)
+            arr[k] = L[i]
+            i += 1
+            k += 1
+        while j < len(R):
+            draw.dispSort(arr = arr,
+                          l = k,
+                          m = j)
+            arr[k] = R[j]
+            j += 1
+            k += 1
+        draw.drawArr(arr,PURPLE)
+    draw.drawArr(arr,GREEN,1)
+
 def closeWindow():  #This function helps to quit the while loop when Tkinter screen is closed
     global f 
     f = 1
@@ -102,7 +141,7 @@ while run:
 
     Label(text="Sorting Technique").grid(row=1, column=0)
     sortType = StringVar(value="Bubble Sort")
-    OptionMenu(root, sortType, "Bubble Sort", "Insertion Sort","Selection Sort","Quick Sort").grid(row=1, column=1)
+    OptionMenu(root, sortType, "Bubble Sort", "Insertion Sort","Selection Sort","Quick Sort","Merge Sort").grid(row=1, column=1)
 
     Label(text="Speed").grid(row=2, column=0)
     speed = IntVar(value=10)
@@ -136,7 +175,7 @@ while run:
         arr = []
         draw.empGrids()
         arr = draw.generate_arr()
-        draw.drawArr(arr,PURPLE)
+        draw.drawArr(arr,PURPLE,1)
 
         if sortMethod == "Bubble Sort":
             bubbleSort(arr)
@@ -146,4 +185,6 @@ while run:
             selectionSort(arr)
         elif sortMethod == "Quick Sort":
             quickSort(arr)
+        elif sortMethod == "Merge Sort":
+            mergeSort(arr)
         break
