@@ -78,7 +78,7 @@ def quickSort(arr): #Quick Sort Technique
     quick_Sort(0,len(arr)-1,arr)
     draw.drawArr(arr,GREEN,1)
 
-def mergeSort(arr):
+def mergeSort(arr): #Merge Sort Technique
     if len(arr) > 1:
         mid = len(arr)//2
         L = arr[:mid]
