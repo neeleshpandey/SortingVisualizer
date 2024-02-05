@@ -2,6 +2,10 @@
 
 ##### This is a piece of code that helps visualize different Sorting Techniques
 
+## Preview
+![Sorting-Visualizer-Preview](https://github.com/neeleshpandey/SortingVisualizer/assets/87470414/4f8c4e68-0b1d-4844-ba25-f8cdb921291b)
+
+
 
 ## Instructions
 
